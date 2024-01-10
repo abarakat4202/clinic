@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'active' => UserStatus::class,
+        'status' => UserStatus::class,
     ];
 
     protected static function newFactory(): UserFactory
