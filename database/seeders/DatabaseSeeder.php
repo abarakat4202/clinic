@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
     protected function recursiveCreateAppointments(): void
     {
-        if (Appointment::count() >= 10) {
+        if (Appointment::count() >= 100) {
             return;
         }
 

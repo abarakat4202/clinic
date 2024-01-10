@@ -44,6 +44,6 @@ class UpdateUserRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $this->merge(['status' => $this->get('status', UserStatus::InActive)]);
+        $this->merge(['status' => $this->get('status', UserStatus::InActive->value)]);
     }
 }

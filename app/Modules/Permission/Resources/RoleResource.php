@@ -23,6 +23,7 @@ class RoleResource extends JsonResource
             'name' => ucwords($this->name),
             'is_assignable' => $this->is_assignable,
             'users_count' => $this->whenCounted('users'),
+            'is_super_admin' => (bool) $this->is_protected,
         ];
     }
 }

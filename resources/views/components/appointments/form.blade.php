@@ -50,7 +50,7 @@
     <div class="col-md-6">
         <label class="form-label" for="formValidationName">Duration (in minutes)</label>
         <input type="numeric" id="formValidationName" class="form-control" placeholder="5" min="5" max="120"
-            name="duration" value="{{ old('duration', $appointment->estimated_duration ?? null) }}" required>
+            name="duration" value="{{ old('duration', $appointment->estimated_duration ?? 20) }}" required>
         <span class="error"> @error('duration')
                 {{ $message }}
             @enderror
