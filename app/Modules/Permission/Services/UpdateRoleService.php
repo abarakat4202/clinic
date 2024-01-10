@@ -19,7 +19,9 @@ class UpdateRoleService
 
             /** @var Role */
             $role->update($data);
-            $role->givePermissionTo($data['permissions']);
+            if (!$role->protected) {
+                $role->syncPermissions($data['permissions']);
+            }
             return true;
         });
     }
