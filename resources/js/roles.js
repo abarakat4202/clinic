@@ -28,7 +28,7 @@ $(function () {
       },
       columns: [
         // columns according to JSON
-        { data: '' },
+        { data: 'id' },
         { data: 'name' },
         { data: 'is_assignable' },
         { data: 'users_count' },
@@ -88,7 +88,7 @@ $(function () {
           }
         }
       ],
-      order: [[1, 'desc']],
+      order: [[0, 'asc']],
       dom:
         '<"row mx-2"' +
         '<"col-md-2"<"me-3"l>>' +

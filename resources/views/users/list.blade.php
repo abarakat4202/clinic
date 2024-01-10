@@ -73,14 +73,13 @@
     <div class="card">
         <div class="card-header border-bottom">
             <h5 class="card-title mb-3">Search Filter</h5>
-            <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
-                <div class="col-md-4 user_status_container">
-                    <select id="user_status" class="form-select text-capitalize">
-                        <option>Select Status</option>
-                        @foreach ($options['status'] as $status)
-                            <option value="{{ $status->value }}">{{ $status->toString() }}</option>
-                        @endforeach
-                    </select>
+            <div class="d-flex justify-content-start align-items-center row pb-2 gap-3 gap-md-0">
+                <div class="col-md-4 filter_status_container">
+                    <x-select2 id="filter_status" title="Status" placeholder="Select Status" :options="$options['status']" />
+                </div>
+                <div class="col-md-4 filter_roles_container">
+                    <x-select2 id="filter_roles" multiple="true" title="Roles" placeholder="Select Role" :options="$options['roles']"
+                        :close-on-select=false />
                 </div>
             </div>
         </div>
@@ -92,6 +91,7 @@
                         <th>Id</th>
                         <th>User</th>
                         <th>Email</th>
+                        <th>Role(s)</th>
                         <th>Active</th>
                         <th>Actions</th>
                     </tr>

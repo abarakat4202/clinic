@@ -34,7 +34,7 @@ class StorePatientRequest extends FormRequest
             'medical_history' => ['nullable', 'string', 'min:3'],
             'allergies' => ['nullable', 'string', 'min:3'],
             'emergency_name' => ['nullable', 'string', 'min:3', 'max:255'],
-            'emergency_phone' => ['nullable', 'starts_with:+20,+971,+961'],
+            'emergency_phone' => ['required_with:emergency_name', 'starts_with:+20,+971,+961'],
         ];
     }
 }

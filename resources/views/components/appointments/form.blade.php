@@ -24,25 +24,17 @@
     <div class="col-md-6">
         <x-select2 name="patient" title="Patient" placeholder="Select Patient" :options="$options['patients']" required="true"
             :selected="old('patient') ?? ($patient->id ?? null)" :readonly="!empty($patient)" />
-        <span class="error"> @error('patient')
-                {{ $message }}
-            @enderror
-        </span>
     </div>
     <div class="col-md-6">
-        <x-select2 name="assignee" title="Assignee (Doctor)" placeholder="Select Doctor" :options="$options['assignees']"
-            required="true" :selected="old('assignee') ?? ($appointment->assignee_id ?? null)" />
-        <span class="error"> @error('assignee')
-                {{ $message }}
-            @enderror
-        </span>
+        <x-select2 name="doctor" title="Assignee (Doctor)" placeholder="Select Doctor" :options="$options['assignees']"
+            required="true" :selected="old('doctor') ?? ($appointment->assignee_id ?? null)" />
     </div>
     <div class="col-md-6">
         <label for="datetime" class="form-label">Appointment Date</label>
         <input type="datetime-local" min="{{ now()->addMinutes(10)->format('Y-m-d\TH:i') }}" name="appointment_date"
             class="form-control" placeholder="YYYY-MM-DD HH:MM" id="datetime"
             value="{{ old('appointment_date', $appointment->estimated_start ?? null) }}" required />
-        <span class="error"> @error('estimated_start')
+        <span class="error"> @error('appointment_date')
                 {{ $message }}
             @enderror
         </span>
@@ -60,7 +52,7 @@
         <hr class="mt-2">
         <div class="col-md-6">
             <label class="form-label">Diagnosis</label>
-            <textarea class="form-control" name="diagnosis" rows="7" minlength="5" required>{{ old('diagnosis', $appointment->diagnosis ?? '') }}</textarea>
+            <textarea class="form-control" name="diagnosis" rows="7">{{ old('diagnosis', $appointment->diagnosis ?? '') }}</textarea>
             <span class="error"> @error('diagnosis')
                     {{ $message }}
                 @enderror
@@ -76,7 +68,7 @@
         </div>
         <div class="col-md-6">
             <label class="form-label">Prescription</label>
-            <textarea class="form-control" name="prescription" rows="7" minlength="5" required>{{ old('prescription', $appointment->prescription ?? '') }}</textarea>
+            <textarea class="form-control" name="prescription" rows="7">{{ old('prescription', $appointment->prescription ?? '') }}</textarea>
             <span class="error"> @error('prescription')
                     {{ $message }}
                 @enderror

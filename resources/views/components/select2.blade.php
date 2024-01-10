@@ -1,6 +1,5 @@
 @php
     $id = $id ?? $name;
-
 @endphp
 
 @push('scripts')
@@ -9,11 +8,12 @@
         const {{ $id }}Selected = @json(\Arr::wrap($selected ?? []));
         const {{ $id }}Options = @json($options)
             .map(function(option) {
+                console.log(option.name)
                 return {
                     ...option,
                     id: option.value || option.id,
                     text: option.text || option.name,
-                    selected: {{ $id }}Selected.includes(option.value || option.id),
+                    selected: {{ $id }}Selected.some(s => (s == option.value || s == option.id)),
                 };
             })
         {{ $id }}Options.unshift({
@@ -26,6 +26,7 @@
             closeOnSelect: {{ isset($closeOnSelect) ? var_export($closeOnSelect) : true }},
             dropdownParent: $({{ $id }}SelectEl).parent(),
             readonly: {{ var_export($readonly ?? false) }},
+            allowClear: true,
             @if (!empty($template))
                 templateResult: (option) => {!! $template !!},
                 templateSelection: (option) => {!! $template !!},

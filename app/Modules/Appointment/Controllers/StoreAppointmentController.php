@@ -19,7 +19,7 @@ class StoreAppointmentController extends Controller
         $data['estimated_start'] = Carbon::parse($data['appointment_date']);
         $data['estimated_end'] = $data['estimated_start']->clone()->addMinutes($data['duration']);
         $data['patient_id'] = $data['patient'];
-        $data['assignee_id'] = $data['assignee'];
+        $data['assignee_id'] = $data['doctor'];
 
         $this->service->handle($data);
 

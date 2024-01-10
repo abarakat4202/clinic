@@ -31,8 +31,9 @@ class ListUsersController extends Controller
             'totalUsers' => User::query()->count(),
             'activeUsers' => User::query()->active()->count(),
             'options' => [
-                'status' => UserStatus::cases(),
-                'roles' => Role::notProtected()->orderBy('id')->pluck('name', 'id'),
+                'status' => UserStatus::options(),
+                'roles' => Role::orderBy('id')->get(['id', 'name'])
+                    ->map(fn (Role $role) => ['id' => $role->id, 'name' => ucfirst($role->name)])
             ],
         ]);
     }

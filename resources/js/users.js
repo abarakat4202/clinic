@@ -6,19 +6,8 @@
 
 import toastr from 'toastr';
 
-window.usersFormInit = function() {
-  const select2 = $('.select2');
-  if (select2.length) {
-    const $this = select2;
-    $this.wrap('<div class="position-relative"></div>').select2({
-      placeholder: 'Select Role',
-      dropdownParent: $this.parent()
-    });
-  }
-}
 // Datatable (jquery)
 $(function () {
-  usersFormInit();
   // Variable declaration for table
   const dt_user_table = $('.datatables-users');
   // Users datatable
@@ -42,6 +31,7 @@ $(function () {
         { data: 'id' },
         { data: 'name' },
         { data: 'email' },
+        { data: 'roles.id' },
         { data: 'status' },
         { data: 'action' }
       ],
@@ -83,8 +73,16 @@ $(function () {
           }
         },
         {
-          // email verify
+          // User Roles
           targets: 4,
+          searchable: true,
+          orderable: false,
+          render: function (data, type, full, meta) {
+            return `<span>${full.roles}</span>`;
+          }
+        },
+        {
+          targets: 5,
           className: 'text-center',
           render: function (data, type, full, meta) {
             var $status = full['status'];
@@ -175,12 +173,21 @@ $(function () {
       },
       initComplete: function () {
         const table = this
-        // Adding status filter once table initialized
-        $("#user_status").on('change', function () {
+        // Adding roles filter once table initialized
+        $("#filter_roles").on('change', function () {
           table.api()
             .columns(4)
             .every(function () {
-              this.search($("#user_status").val()).draw();
+              this.search($("#filter_roles").val()).draw();
+            });
+        })
+        // Adding status filter once table initialized
+        $("#filter_status").on('change', function () {
+            
+          table.api()
+            .columns(5)
+            .every(function () {
+              this.search($("#filter_status").val()).draw();
             });
         })
       }

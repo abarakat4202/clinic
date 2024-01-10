@@ -62,8 +62,8 @@
                         :options="$options['patients']" :close-on-select=false />
                 </div>
 
-                <div class="col-md-4 mb-4 filter_assignees_container">
-                    <x-select2 id="filter_assignees" multiple="multiple" title="Assignees" placeholder="Select Assignee"
+                <div class="col-md-4 mb-4 filter_doctors_container">
+                    <x-select2 id="filter_doctors" multiple="multiple" title="Doctors" placeholder="Select Doctor"
                         :options="$options['assignees']" :close-on-select=false />
                 </div>
                 <div class="col-md-4 mb-4 filter_status_container">
@@ -81,7 +81,7 @@
                         <th></th>
                         <th>ID</th>
                         <th>Patient</th>
-                        <th>Assignee</th>
+                        <th>Doctor</th>
                         <th>Status</th>
                         <th>Estimated Start</th>
                         <th>Estimated End</th>

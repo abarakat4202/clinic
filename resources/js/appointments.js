@@ -186,11 +186,11 @@ $(function () {
             });
         })
 
-        $("#filter_assignees").on('change', function () {
+        $("#filter_doctors").on('change', function () {
           table.api()
             .columns(3)
             .every(function () {
-                this.search($("#filter_assignees").val().join(','), false, false).draw();
+                this.search($("#filter_doctors").val().join(','), false, false).draw();
             });
         })
 

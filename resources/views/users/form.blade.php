@@ -23,7 +23,7 @@
             select2.each(function() {
                 var $this = $(this);
                 $this.wrap('<div class="position-relative"></div>').select2({
-                    placeholder: 'Select value',
+                    placeholder: 'Select Role',
                     dropdownParent: $this.parent()
                 });
             });
@@ -67,17 +67,18 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label" for="add-user-password">Password</label>
+                            <input type="password" id="add-user-password" autocomplete="off" class="form-control"
+                                placeholder="Type password" aria-label="Type password" name="password" value=""
+                                @required(empty($user)) />
+                            @error('password')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
                         @if (empty($user->is_super_admin))
                             <div class="mb-3">
-                                <label class="form-label" for="add-user-password">Password</label>
-                                <input type="password" id="add-user-password" autocomplete="off" class="form-control"
-                                    placeholder="Type password" aria-label="Type password" name="password" value=""
-                                    @required(empty($user)) />
-                                @error('password')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
+                                <label class="form-label" for="user-role">Role</label>
                                 <select id="user-role" name="roles[]" multiple
                                     class="form-select select2 select2-primary text-capitalize" autocomplete="off" required>
                                     @foreach ($options['roles'] as $roleId => $roleName)
@@ -90,22 +91,23 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label class="switch switch-outline">
+                                    <span class="switch-label">Active?</span>
+                                    <input type="checkbox" name="status" class="switch-input" @checked(!empty($user) ? $user->status : true)
+                                        value="1" />
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="ti ti-check"></i>
+                                        </span>
+                                        <span class="switch-off">
+                                            <i class="ti ti-x"></i>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
                         @endif
-                        <div class="mb-3">
-                            <label class="switch switch-outline">
-                                <span class="switch-label">Active?</span>
-                                <input type="checkbox" name="status" class="switch-input" @checked(!empty($user) ? $user->status : true)
-                                    value="1" />
-                                <span class="switch-toggle-slider">
-                                    <span class="switch-on">
-                                        <i class="ti ti-check"></i>
-                                    </span>
-                                    <span class="switch-off">
-                                        <i class="ti ti-x"></i>
-                                    </span>
-                                </span>
-                            </label>
-                        </div>
+
                         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
                         <button type="reset" class="btn btn-label-secondary" onclick="history.back()">Cancel</button>
                     </form>

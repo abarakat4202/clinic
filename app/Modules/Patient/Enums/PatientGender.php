@@ -15,7 +15,7 @@ enum PatientGender: int implements Arrayable
     public function toString()
     {
         return match ($this) {
-            default => strtolower($this->name),
+            default => ($this->name),
         };
     }
 }

@@ -7,6 +7,7 @@ use App\Modules\Appointment\Factories\AppointmentFactory;
 use App\Modules\Patient\Models\Patient;
 use App\Modules\User\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,6 +34,7 @@ use Illuminate\Support\Carbon;
  * @property-read User $creator
 
  * @method static Builder open()
+ * @method static Builder withinTimes(Carbon $start, Carbon $end, ?Appointment $ignore = null)
  */
 class Appointment extends Model
 {
@@ -82,6 +84,20 @@ class Appointment extends Model
             AppointmentStatus::Cancelled,
             AppointmentStatus::Completed,
         ]);
+    }
+
+    public function scopeWithinTimes(Builder $builder, Carbon $start, Carbon $end, ?Appointment $ignore = null): Builder
+    {
+        $builder->open()->where(
+            fn (QueryBuilder $q) => $q->whereBetween('estimated_start', [$start, $end])
+                ->orWhereBetween('estimated_end', [$start, $end])
+        );
+
+        if ($ignore) {
+            $builder->where('id', '!=', $ignore->id);
+        }
+
+        return $builder;
     }
 
     public function getIsClosedAttribute(): bool

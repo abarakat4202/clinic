@@ -28,13 +28,13 @@ class UpdatePatientRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'phone' => ['required', 'starts_with:+20,+971,+961'],
-            'birth_date' => ['required', 'date', 'before:today'],
+            'birth_date' => ['required', 'date', 'before:tomorrow'],
             'gender' => ['required', Rule::enum(PatientGender::class)],
             'address' => ['nullable', 'string', 'min:3', 'max:255'],
             'medical_history' => ['nullable', 'string', 'min:3'],
             'allergies' => ['nullable', 'string', 'min:3'],
             'emergency_name' => ['nullable', 'string', 'min:3', 'max:255'],
-            'emergency_phone' => ['nullable', 'starts_with:+20,+971,+961'],
+            'emergency_phone' => ['required_with:emergency_name', 'starts_with:+20,+971,+961'],
         ];
     }
 }

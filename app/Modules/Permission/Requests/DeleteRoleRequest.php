@@ -14,7 +14,7 @@ class DeleteRoleRequest extends FormRequest
     public function authorize(): bool
     {
         return Gate::allows(UserPermission::RolesDelete->value)
-            && !$this->route('role')->roles->firstWhere('is_protected', true);
+            && !$this->route('role')->is_protected;
     }
 
     /**

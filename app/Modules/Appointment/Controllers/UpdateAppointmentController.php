@@ -19,7 +19,7 @@ class UpdateAppointmentController extends Controller
         $data = $request->validated();
         $data['estimated_start'] = Carbon::parse($data['appointment_date']);
         $data['estimated_end'] = $data['estimated_start']->clone()->addMinutes($data['duration']);
-        $data['assignee_id'] = $data['assignee'];
+        $data['assignee_id'] = $data['doctor'];
 
         $this->service->handle($appointment, $data);
 

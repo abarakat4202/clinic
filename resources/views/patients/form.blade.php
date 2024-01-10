@@ -84,8 +84,8 @@
                             <label class="form-label" for="formValidationDob">Birth Date</label>
                             <input type="date" class="form-control flatpickr-validation" id="formValidationDob"
                                 name="birth_date"
-                                value="{{ old('birth_date', !empty($patient) ? $patient->birth_date->format('Y-m-d') : '') }}"
-                                max='{{ today() }}' required />
+                                value="{{ old('birth_date',!empty($patient)? $patient->birth_date->format('Y-m-d'): today()->subYears(24)->format('Y-m-d')) }}"
+                                min="{{ today()->format('Y-m-d\TH:i') }}" required />
                             <span class="error"> @error('birth_date') {{ $message }} @endif
                             </span>
                         </div>
@@ -141,7 +141,6 @@
                             <label class="form-label" for="formValidationEmergencyName">Emergency Contact Name</label>
                             <input type="text" id="formValidationEmergencyName" class="form-control"
                                 placeholder="John Doe" name="emergency_name"
-                                value="{{ old('emergency_name', $patient->name ?? null) }}"
                                 value="{{ old('emergency_name', $patient->emergency_name ?? '') }}">
                             <span class="error"> @error('emergency_name') {{ $message }} @endif
                             </span>

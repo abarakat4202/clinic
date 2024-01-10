@@ -15,8 +15,8 @@ enum UserStatus: int implements Arrayable
     public function toString()
     {
         return match ($this) {
-            static::InActive => 'inactive',
-            static::Active => 'active',
+            static::InActive => 'Inactive',
+            static::Active => 'Active',
             default => strtolower($this->name),
         };
     }

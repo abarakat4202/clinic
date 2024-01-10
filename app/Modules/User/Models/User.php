@@ -33,7 +33,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read User $creator
  * 
  * @method static Builder active()
- * @method static Builder availableAssignees(Carbon $start, Carbon $end)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -94,21 +93,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function createdAppointments(): HasMany
     {
         return $this->hasMany(Appointment::class, 'creator_id');
-    }
-
-    protected function scopeAvailableAssignees(Builder $builder, Carbon $start, Carbon $end, ?Appointment $ignore = null): Builder
-    {
-        $builder->whereHas('roles', fn ($q) => $q->where('is_assignable', true));
-        $builder->whereDoesntHave(
-            'assignedAppointments',
-            function (QueryBuilder $query) use ($start, $end, $ignore) {
-                $query->whereBetween('estimated_start', [$start, $end]);
-                $query->whereBetween('estimated_end', [$start, $end]);
-                if ($ignore) {
-                    $query->where('id', '!=', $ignore->id);
-                }
-            }
-        );
-        return $builder;
     }
 }

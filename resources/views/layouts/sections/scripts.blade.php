@@ -14,7 +14,9 @@
 </script>
 @yield('vendor-script')
 <script>
-    const permissions = @json(\App\Modules\Permission\Enums\UserPermission::cases());
+    const permissions = @json(Auth::user()
+            ?->getAllPermissions()->pluck('name') ?? []
+    );
     const can = (permission) => permissions.includes(permission);
     // ajax setup
     $.ajaxSetup({

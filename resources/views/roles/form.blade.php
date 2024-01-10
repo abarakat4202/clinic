@@ -27,7 +27,7 @@
         <div class="col-xl-10 offset-xl-1">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">{{ $role->name ?? 'New Role' }}</h5>
+                    <h5 class="mb-0 text-capitalize">{{ $role->name ?? 'New Role' }}</h5>
                 </div>
                 <div class="card-body">
                     <form class="add-new-user pt-0"
@@ -49,7 +49,7 @@
                         @endif
                         <div class="mb-3">
                             <label class="switch">
-                                <span class="switch-label">Is Assignable?
+                                <span class="switch-label">Is Assignable (Is Doctor)?
                                     <i class="ti ti-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                         aria-label="Allows patients to be assigned to users with this role"
                                         data-bs-original-title="Allows patients to be assigned to users with this role"></i>

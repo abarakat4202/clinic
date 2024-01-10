@@ -36,7 +36,7 @@
     },
     {
       "url": "users/auth/logout",
-      "name": "logout",
+      "name": "Logout",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "users.auth.logout"
     }
