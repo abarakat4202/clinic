@@ -1,0 +1,44 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "pages-home"
+    },
+    {
+      "url": "appointments",
+      "icon": "menu-icon tf-icons ti ti-calendar-due",
+      "name": "Appointments",
+      "slug": "appointments",
+      "permission": "Appointments::view"
+    },
+    {
+      "url": "patients",
+      "icon": "menu-icon tf-icons ti ti-heart",
+      "name": "Patients",
+      "slug": "patients",
+      "permission": "Patients::view"
+    },
+    {
+      "url": "users",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "name": "Users",
+      "slug": "users",
+      "permission": "Users::view"
+    },
+    {
+      "url": "roles",
+      "icon": "menu-icon tf-icons ti ti-user-circle",
+      "name": "Roles",
+      "slug": "roles",
+      "permission": "Roles::view"
+    },
+    {
+      "url": "users/auth/logout",
+      "name": "logout",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "users.auth.logout"
+    }
+  ]
+}
