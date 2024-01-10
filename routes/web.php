@@ -16,7 +16,7 @@ use App\Http\Controllers\pages\HomePage;
 
 // Main Page Route
 
-Route::get('/', [HomePage::class, 'index'])->middleware('auth')->name('pages-home');
+Route::get('/', [HomePage::class, 'index'])->middleware(['auth', 'active'])->name('pages-home');
 
 
 Route::group(['prefix' => 'users/auth'], function () {
@@ -25,7 +25,7 @@ Route::group(['prefix' => 'users/auth'], function () {
     Route::any('logout', \App\Modules\User\Controllers\LogoutUserController::class)->middleware('auth')->name('users.auth.logout');
 });
 
-Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'users', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', \App\Modules\User\Controllers\ListUsersController::class)->name('users.index');
     Route::get('/create', \App\Modules\User\Controllers\CreateUserController::class)->name('users.create');
     Route::post('/', \App\Modules\User\Controllers\StoreUserController::class)->name('users.store');
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::delete('/{user}', \App\Modules\User\Controllers\DeleteUserController::class)->name('users.destroy');
 });
 
-Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'roles', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', \App\Modules\Permission\Controllers\ListRolesController::class)->name('roles.index');
     Route::get('/create', \App\Modules\Permission\Controllers\CreateRoleController::class)->name('roles.create');
     Route::post('/', \App\Modules\Permission\Controllers\StoreRoleController::class)->name('roles.store');
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
     Route::delete('/{role}', \App\Modules\Permission\Controllers\DeleteRoleController::class)->name('roles.destroy');
 });
 
-Route::group(['prefix' => 'patients', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'patients', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', \App\Modules\Patient\Controllers\ListPatientsController::class)->name('patients.index');
     Route::get('/create', \App\Modules\Patient\Controllers\CreatePatientController::class)->name('patients.create');
     Route::post('/', \App\Modules\Patient\Controllers\StorePatientController::class)->name('patients.store');
@@ -53,7 +53,7 @@ Route::group(['prefix' => 'patients', 'middleware' => ['auth']], function () {
     Route::get('/{patient}', \App\Modules\Patient\Controllers\ShowPatientController::class)->name('patients.show');
 });
 
-Route::group(['prefix' => 'appointments', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'appointments', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', \App\Modules\Appointment\Controllers\ListAppointmentsController::class)->name('appointments.index');
     Route::get('/create', \App\Modules\Appointment\Controllers\CreateAppointmentController::class)->name('appointments.create');
     Route::post('/', \App\Modules\Appointment\Controllers\StoreAppointmentController::class)->name('appointments.store');
@@ -61,18 +61,4 @@ Route::group(['prefix' => 'appointments', 'middleware' => ['auth']], function ()
     Route::patch('/{appointment}', \App\Modules\Appointment\Controllers\UpdateAppointmentController::class)->name('appointments.update');
     Route::delete('/{appointment}', \App\Modules\Appointment\Controllers\DeleteAppointmentController::class)->name('appointments.destroy');
     Route::get('/{appointment}', \App\Modules\Appointment\Controllers\ShowAppointmentController::class)->name('appointments.show');
-});
-
-use Faker\Factory;
-
-Route::get('test', function () {
-
-
-    // Create a Faker instance
-    $faker = Factory::create('ar_EG');
-
-    // Generate a random fake phone number for Egypt
-    $phoneNumber = $faker->phoneNumber();
-
-    return $phoneNumber;
 });
