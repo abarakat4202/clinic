@@ -40,16 +40,16 @@ class UpdateAppointmentRequest extends FormRequest
             'doctor' => [
                 'required',
                 Rule::exists('users', 'id'),
-                function (string $attribute, mixed $value, Closure $fail) {
-                    if (!empty($this->get('doctor')) && !empty($this->get('appointment_date')) &&  !empty($this->get('duration'))) {
-                        $start = Carbon::parse($this->get('appointment_date'));
-                        $end = $start->clone()->addMinutes($this->get('duration'));
-                        //check if patient has another appointment withing this range
-                        if (Appointment::withinTimes($start, $end, $this->route('appointment'))->where('assignee_id', $this->get('assignee'))->exists()) {
-                            $fail("The {$attribute} is already assigned to another appointments within that time!");
-                        }
-                    }
-                },
+                // function (string $attribute, mixed $value, Closure $fail) {
+                //     if (!empty($this->get('doctor')) && !empty($this->get('appointment_date')) &&  !empty($this->get('duration'))) {
+                //         $start = Carbon::parse($this->get('appointment_date'));
+                //         $end = $start->clone()->addMinutes($this->get('duration'));
+                //         //check if patient has another appointment withing this range
+                //         if (Appointment::withinTimes($start, $end, $this->route('appointment'))->where('assignee_id', $this->get('assignee'))->exists()) {
+                //             $fail("The {$attribute} is already assigned to another appointments within that time!");
+                //         }
+                //     }
+                // },
             ],
         ];
     }
