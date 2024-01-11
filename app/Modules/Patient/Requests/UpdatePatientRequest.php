@@ -25,7 +25,7 @@ class UpdatePatientRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'phone' => ['required', 'starts_with:+20,+971,+961'],
             'birth_date' => ['required', 'date', 'before:tomorrow'],
@@ -34,7 +34,13 @@ class UpdatePatientRequest extends FormRequest
             'medical_history' => ['nullable', 'string', 'min:3'],
             'allergies' => ['nullable', 'string', 'min:3'],
             'emergency_name' => ['nullable', 'string', 'min:3', 'max:255'],
-            'emergency_phone' => ['required_with:emergency_name', 'starts_with:+20,+971,+961'],
         ];
+
+
+        if (!empty($this->get('emergency_name'))) {
+            $rules['emergency_phone'] = ['required', 'starts_with:+20,+971,+961'];
+        }
+
+        return $rules;
     }
 }
