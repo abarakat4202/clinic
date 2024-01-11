@@ -18,7 +18,11 @@ class UpdateUserService
 
             if (empty($data['password'])) {
                 unset($data['password']);
+            } else {
+                $data['password'] = bcrypt($data['password']);
             }
+
+
             $user->update($data);
 
             if (!empty($data['roles'])) {

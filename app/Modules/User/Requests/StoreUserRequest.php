@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'min:6'],
             'roles' => ['required', 'array'],
             'roles.*' => ['required', Rule::exists('roles', 'id')->where('is_protected', false)],
-            'status' => ['sometimes'],
+            'status' => ['sometimes', Rule::enum(UserStatus::class)],
         ];
     }
 
