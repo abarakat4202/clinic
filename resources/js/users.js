@@ -60,6 +60,21 @@ $(function () {
           targets: 2,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
+            // Creates full output for row
+            var $row_output =
+              '<div class="d-flex justify-content-start align-items-center user-name">' +
+              '<div class="avatar-wrapper">' +
+              '<div class="avatar avatar-sm me-3">' +
+              `<img src="${full.avatar}">` +
+              '</div>' +
+              '</div>' +
+              '<div class="d-flex flex-column">' +
+              `<span>${full.name}</span>`
+              +
+              '</span></a>' +
+              '</div>' +
+              '</div>';
+            return $row_output;
             return `<span>${full.name}</span>`;
           }
         },

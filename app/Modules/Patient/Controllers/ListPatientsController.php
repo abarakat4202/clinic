@@ -28,7 +28,7 @@ class ListPatientsController extends Controller
         return view('patients.list', [
             'totalPatients' => Patient::query()->count(),
             'options' => [
-                'genders' => PatientGender::cases(),
+                'genders' => PatientGender::options(),
             ],
         ]);
     }

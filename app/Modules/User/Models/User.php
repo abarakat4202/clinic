@@ -14,8 +14,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @property int $id
@@ -24,6 +26,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property ?Carbon $email_verified_at
  * @property UserStatus $status
  * @property string $password
+ * @property string $avatar
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -34,9 +37,9 @@ use Spatie\Permission\Traits\HasRoles;
  * 
  * @method static Builder active()
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use HasFactory, Notifiable, HasRoles, HasApiTokens;
+    use HasFactory, Notifiable, HasRoles, HasApiTokens, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'status',
+        'avatar',
     ];
 
     /**
@@ -69,6 +73,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'status' => UserStatus::class,
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile();
+    }
+
 
     protected static function newFactory(): UserFactory
     {
@@ -93,5 +105,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function createdAppointments(): HasMany
     {
         return $this->hasMany(Appointment::class, 'creator_id');
+    }
+
+    public function setAvatarAttribute(UploadedFile $avatar): void
+    {
+        if (!empty($avatar)) {
+            $this->copyMedia($avatar)->toMediaCollection('avatar');
+        }
+    }
+
+    public function getAvatarAttribute(): string
+    {
+        return $this->getFirstMediaUrl('avatar') ?: asset('assets/img/avatars/user.png');
+    }
+
+    public function hasAvatar(): bool
+    {
+        return !empty($this->getFirstMediaUrl('avatar'));
     }
 }

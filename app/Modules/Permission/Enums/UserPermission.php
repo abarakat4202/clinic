@@ -2,7 +2,7 @@
 
 namespace App\Modules\Permission\Enums;
 
-use App\Support\HasOptions;
+use App\Support\Concerns\HasOptions;
 use Illuminate\Contracts\Support\Arrayable;
 
 enum UserPermission: string implements Arrayable

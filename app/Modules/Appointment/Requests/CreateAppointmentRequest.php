@@ -5,7 +5,6 @@ namespace App\Modules\Appointment\Requests;
 use App\Modules\Permission\Enums\UserPermission;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 
 class CreateAppointmentRequest extends FormRequest
 {

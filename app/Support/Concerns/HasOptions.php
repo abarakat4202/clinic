@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support;
+namespace App\Support\Concerns;
 
 trait HasOptions
 {

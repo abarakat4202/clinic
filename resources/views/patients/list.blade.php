@@ -55,12 +55,7 @@
             <h5 class="card-title mb-3">Search Filter</h5>
             <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
                 <div class="col-md-4 filter_gender_container">
-                    <select id="filter_gender" class="form-select text-capitalize">
-                        <option>Select Gender</option>
-                        @foreach ($options['genders'] as $gender)
-                            <option value="{{ $gender->value }}">{{ $gender->toString() }}</option>
-                        @endforeach
-                    </select>
+                    <x-select2 id="filter_gender" title="Gender" placeholder="Select Gender" :options="$options['genders']" />
                 </div>
             </div>
         </div>

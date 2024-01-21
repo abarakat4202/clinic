@@ -28,6 +28,8 @@ Route::group(['prefix' => 'users/auth'], function () {
 Route::group(['prefix' => 'users', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', \App\Modules\User\Controllers\ListUsersController::class)->name('users.index');
     Route::get('/create', \App\Modules\User\Controllers\CreateUserController::class)->name('users.create');
+    Route::get('/profile', \App\Modules\User\Controllers\ShowUserProfileFormController::class)->name('users.profile.edit');
+    Route::post('/profile', \App\Modules\User\Controllers\UpdateUserProfileController::class)->name('users.profile.update');
     Route::post('/', \App\Modules\User\Controllers\StoreUserController::class)->name('users.store');
     Route::get('{user}/edit', \App\Modules\User\Controllers\EditUserController::class)->name('users.edit');
     Route::patch('/{user}', \App\Modules\User\Controllers\UpdateUserController::class)->name('users.update');

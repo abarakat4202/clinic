@@ -4,8 +4,7 @@
 @php
     $configData = Helper::appClasses();
     $isNavbar = true;
-    $navbarType = 'layout-navbar-hidden';
-
+    // $navbarType = 'layout-navbar-hidden';
 @endphp
 
 @isset($configData['layout'])

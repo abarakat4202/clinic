@@ -23,6 +23,8 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'status' => $this->status,
+            'has_avatar' => $this->hasAvatar(),
+            'avatar' => $this->avatar,
             $this->mergeWhen($this->relationLoaded('roles'), fn () => [
                 'roles' => $this->roles->pluck('name')->map(fn (string $name) => ucfirst($name))->implode(','),
                 'is_super_admin' => $this->is_super_admin,

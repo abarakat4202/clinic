@@ -2,7 +2,7 @@
 
 namespace App\Modules\User\Enums;
 
-use App\Support\HasOptions;
+use App\Support\Concerns\HasOptions;
 use Illuminate\Contracts\Support\Arrayable;
 
 enum UserStatus: int implements Arrayable

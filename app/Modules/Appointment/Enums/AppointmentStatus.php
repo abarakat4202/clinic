@@ -2,7 +2,7 @@
 
 namespace App\Modules\Appointment\Enums;
 
-use App\Support\HasOptions;
+use App\Support\Concerns\HasOptions;
 use Illuminate\Contracts\Support\Arrayable;
 
 enum AppointmentStatus: int implements Arrayable

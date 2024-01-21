@@ -66,26 +66,23 @@
         <!--/ Style Switcher -->
     @endif
 
-    @if (0)
+    @if (1)
         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/avatars/1.png') }}"
-                            alt class="h-auto rounded-circle">
+                        <img src="{{ Auth::user()->avatar }}" alt class="h-auto rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item"
-                            href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0);' }}">
+                        <a class="dropdown-item" href="{{ route('users.profile.edit') }}">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/avatars/1.png') }}"
-                                            alt class="h-auto rounded-circle">
+                                        <img src="{{ Auth::user()->avatar }}" alt class="h-auto rounded-circle">
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -96,31 +93,21 @@
                                             John Doe
                                         @endif
                                     </span>
-                                    <small class="text-muted">Admin</small>
+                                    <small class="text-muted">{{ Auth::user()->roles->first()->name }}</small>
                                 </div>
                             </div>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a class="dropdown-item"
                             href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0);' }}">
                             <i class="ti ti-user-check me-2 ti-sm"></i>
                             <span class="align-middle">My Profile</span>
                         </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <span class="d-flex align-items-center align-middle">
-                                <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                                <span class="flex-grow-1 align-middle">Billing</span>
-                                <span
-                                    class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
-                            </span>
-                        </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
