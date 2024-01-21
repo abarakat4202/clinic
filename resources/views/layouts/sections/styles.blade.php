@@ -95,7 +95,7 @@
         display: none;
     }
 
-    .users-table .avatar {
+    #users-table .avatar {
         cursor: initial;
     }
 </style>
