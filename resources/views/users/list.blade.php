@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users dt-column-search table">
+            <table class="datatables-users dt-column-search table" id="users-table">
                 <thead class="border-top">
                     <tr>
                         <th></th>

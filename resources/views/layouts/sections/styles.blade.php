@@ -94,6 +94,10 @@
     select[readonly].select2-hidden-accessible+.select2-container .select2-selection__clear {
         display: none;
     }
+
+    .users-table .avatar {
+        cursor: initial;
+    }
 </style>
 
 <!-- Page Styles -->
