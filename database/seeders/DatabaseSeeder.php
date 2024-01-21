@@ -34,16 +34,19 @@ class DatabaseSeeder extends Seeder
 
     protected function recursiveCreateAppointments(): void
     {
+        // Base Case
         if (Appointment::count() >= 100) {
             return;
         }
 
+        // Decomposition
         Appointment::factory()
             ->for(User::role('doctor')->inRandomOrder()->first(), 'assignee')
             ->for(User::role('receptionist')->inRandomOrder()->first(), 'creator')
             ->for(Patient::inRandomOrder()->first())
             ->create();
 
+        // Composition
         $this->recursiveCreateAppointments();
     }
 }

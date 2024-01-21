@@ -5,7 +5,6 @@ namespace App\Modules\User\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\User\Requests\UpdateUserProfileRequest;
 use App\Modules\User\Services\UpdateUserProfileService;
-use Illuminate\Http\Request;
 
 class UpdateUserProfileController extends Controller
 {

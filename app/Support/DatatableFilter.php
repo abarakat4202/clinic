@@ -18,7 +18,7 @@ class DatatableFilter
         $this->builder = $model->query();
     }
 
-    public static function make(string $class)
+    public static function make(string $class): static
     {
         return new static(new $class);
     }
@@ -62,8 +62,9 @@ class DatatableFilter
     protected function searchRecursive(QueryBuilder $queryBuilder, string $search, array &$columnNames): Builder
     {
         $columnName = current($columnNames);
-
+        // Base Case
         if ($columnName !== false) {
+            // Decomposition
             if (!Str::contains($columnName, '.')) {
                 $queryBuilder->orWhere($columnName, 'LIKE', "%{$search}%");
             } else {
@@ -76,13 +77,14 @@ class DatatableFilter
                 );
             }
             next($columnNames);
+            // Composition
             return $this->searchRecursive($queryBuilder, $search, $columnNames);
         }
 
         return $queryBuilder;
     }
 
-    protected function filter(array &$filters)
+    protected function filter(array &$filters): Builder
     {
         foreach ($filters['columns'] as $filterColumnData) {
             $filterValue = $filterColumnData['search']['value'];
