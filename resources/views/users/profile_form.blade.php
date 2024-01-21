@@ -111,7 +111,7 @@
                             <div class="mb-3 col-md-12 fv-plugins-icon-container">
                                 <label for="password" class="form-label">New Password</label>
                                 <input class="form-control" id="password" name="password" type="password" value=""
-                                    autofocus="" maxlength="6">
+                                    autofocus="" minlength="6">
                                 @error('password')
                                     <span class="error">{{ $message }}</span>
                                 @enderror
@@ -119,7 +119,7 @@
                             <div class="mb-3 col-md-12 fv-plugins-icon-container">
                                 <label for="password_confirmation" class="form-label">Confirm New Password</label>
                                 <input class="form-control" id="password_confirmation" name="password_confirmation"
-                                    type="password" value="" autofocus="" maxlength="6">
+                                    type="password" value="" autofocus="" minlength="6">
                             </div>
                         </div>
                         <div class="mt-2">

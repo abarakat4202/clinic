@@ -36,7 +36,7 @@ class UpdateUserProfileRequest extends FormRequest
         ];
 
         if (!empty($this->get('current_password'))) {
-            $rules['password'] = ['required', 'min:6'];
+            $rules['password'] = ['required', 'min:6', 'confirmed'];
         }
     }
 }

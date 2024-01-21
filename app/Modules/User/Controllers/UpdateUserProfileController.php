@@ -15,7 +15,7 @@ class UpdateUserProfileController extends Controller
 
     public function __invoke(UpdateUserProfileRequest $request)
     {
-        $isUpdated = $this->service->handle($request->validated());
+        $isUpdated = $this->service->handle($request->only(['avatar', 'password']));
 
         if (!$isUpdated) {
             return redirect()->route('users.profile.edit')->with([

@@ -122,8 +122,7 @@
                     <form method="POST" id="logout-form" action="{{ route('logout') }}">
                         @csrf
                     </form> --}}
-                        <a class="dropdown-item" href="{{ route('users.auth.logout') }}"
-                            hx-post="{{ route('users.auth.logout') }}">
+                        <a class="dropdown-item" href="{{ route('users.auth.logout') }}">
                             <i class='ti ti-logout me-2'></i>
                             <span class="align-middle">Logout</span>
                         </a>

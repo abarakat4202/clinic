@@ -9,7 +9,6 @@ class LoginUserService
 
     public function __construct()
     {
-        
     }
 
     public function handle(string $email, string $password, bool $remember = false): bool
